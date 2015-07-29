@@ -54,8 +54,8 @@ Use an alternative datastore (Cassandra):
     class { '::kairosdb::datastore::cassandra':
       hosts => [
         '1.1.1.1:9160',
-	'1.1.1.2:9160'
-      ]
+        '1.1.1.2:9160',
+      ],
     }
 
 Use a remote KairosDB as a datastore (like a forwarder):
