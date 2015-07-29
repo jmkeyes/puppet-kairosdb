@@ -60,13 +60,13 @@ Use an alternative datastore (Cassandra):
 
 Use a remote KairosDB as a datastore (like a forwarder):
 
-   class { '::kairosdb':
-     version => '0.9.4-6',
-   }
+    class { '::kairosdb':
+      version => '0.9.4-6',
+    }
 
-   class { '::kairosdb::datastore::remote':
-     remote_url => 'http://10.92.1.41:8080',
-   }
+    class { '::kairosdb::datastore::remote':
+      remote_url => 'http://10.92.1.41:8080',
+    }
 
 ## Todo
 
