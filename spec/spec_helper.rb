@@ -9,6 +9,7 @@ RSpec.configure do |c|
   c.default_facts = {
     :kernel          => 'Linux',
     :concat_basedir  => '/var/lib/puppet/concat',
+    :path            => '/bin:/sbin:/usr/bin:/usr/sbin',
     :puppetversion   => ENV['PUPPET_VERSION'] || Puppet.version
   }
 end

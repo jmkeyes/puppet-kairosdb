@@ -11,7 +11,7 @@
 
 ## Overview
 
-This is a Puppet Module to deploy and manage a KairosDB server. 
+This is a Puppet Module to deploy and manage a KairosDB server.
 
 ## Description
 
@@ -28,6 +28,45 @@ This module is will also work with Puppet 4.x.
 ## Configuration
 
 All configuration can be handled either through Hiera or by arguments to the `kairosdb` class.
+
+## Examples
+
+A stock KairosDB 0.9.4-6 without modifications (defaults):
+
+    class { '::kairosdb':
+      version => '0.9.4-6',
+    }
+
+The same thing, but explicitly using a slow development datastore:
+
+    class { '::kairosdb':
+      version => '0.9.4-6',
+    }
+
+    class { '::kairosdb::datastore::h2': }
+
+Use an alternative datastore (Cassandra):
+
+    class { '::kairosdb':
+      version => '0.9.4-6',
+    }
+
+    class { '::kairosdb::datastore::cassandra':
+      hosts => [
+        '1.1.1.1:9160',
+	'1.1.1.2:9160'
+      ]
+    }
+
+Use a remote KairosDB as a datastore (like a forwarder):
+
+   class { '::kairosdb':
+     version => '0.9.4-6',
+   }
+
+   class { '::kairosdb::datastore::remote':
+     remote_url => 'http://10.92.1.41:8080',
+   }
 
 ## Todo
 

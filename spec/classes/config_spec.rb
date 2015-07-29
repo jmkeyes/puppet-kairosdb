@@ -3,24 +3,24 @@ describe 'kairosdb::config' do
     it { should raise_error(Puppet::Error, /Use of private class kairosdb::config from/) }
   end
 
-  shared_examples 'a Linux distribution' do |osfamily|
-    context "on #{osfamily}" do
-      let (:facts) do
-        {
-          :operatingsystem => osfamily,
-          :osfamily        => osfamily,
-        }
-      end
-
-      describe "with default parameters" do
-        let (:pre_condition) { 'include ::kairosdb' }
-
-        it { should compile.with_all_deps }
-        it { should create_class('kairosdb::config') }
-      end
-    end
+  context "with default parameters" do
+    let (:pre_condition) { 'include "::kairosdb" ' }
+    it { should raise_error(Puppet::Error, /You must manually select a version of KairosDB to deploy\./) }
   end
 
-  it_behaves_like "a Linux distribution", 'RedHat'
-  it_behaves_like "a Linux distribution", 'Debian'
+  context "with version => '0.9.4-6'" do
+    let (:pre_condition) { 'class { "::kairosdb": version => "0.9.4-6" }' }
+
+    it { should compile.with_all_deps }
+    it { should create_class('kairosdb::config') }
+
+    it do
+      should contain_file('/opt/kairosdb/conf/kairosdb.properties').with({
+        :ensure => 'present',
+        :owner  => 'root',
+        :group  => 'root',
+        :mode   => '0644',
+      })
+    end
+  end
 end
