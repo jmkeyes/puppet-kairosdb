@@ -23,7 +23,7 @@ To use this module, use either an include-like or resource-like declaration:
     # A resource-like declaration for manual overrides.
     class { '::kairosdb': }
 
-This module is will also work with Puppet 4.x.
+This module will also work with Puppet 4.x.
 
 ## Configuration
 
