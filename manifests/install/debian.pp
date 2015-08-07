@@ -5,10 +5,17 @@ class kairosdb::install::debian {
 
   $version = $::kairosdb::version
   $release = regsubst($version, '^(\d+\.\d+\.\d+)(?:-(\d+))?$', '\1')
-  $source  = 'https://github.com/kairosdb/kairosdb/releases/download/v%s/kairosdb_%s_all.deb'
+
+  $github_url     = 'https://github.com/kairosdb/kairosdb/releases/download/v%s/kairosdb_%s_all.deb'
+  $googlecode_url = 'https://kairosdb.googlecode.com/files/kairosdb_%s_all.deb'
+
+  $source = $::kairosdb::package_mirror ? {
+    'github'     => sprintf($github_url, $release, $version),
+    'googlecode' => sprintf($googlecode_url, $version),
+  }
 
   staging::file { "kairosdb_${version}_all.deb":
-    source => sprintf($source, $release, $version),
+    source => $source,
   } ->
 
   package { $::kairosdb::package_name:

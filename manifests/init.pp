@@ -4,6 +4,7 @@ class kairosdb (
   $version         = undef,
   $package_name    = 'kairosdb',
   $package_ensure  = 'installed',
+  $package_mirror  = 'github',
   $service_name    = 'kairosdb',
   $service_ensure  = 'running',
   $service_enable  = true,
@@ -21,6 +22,10 @@ class kairosdb (
     fail('You must manually select a version of KairosDB to deploy.')
   } else {
     validate_re($version, '^(\d+\.\d+\.\d+)(?:-(\d+))?$')
+  }
+
+  if $::kairosdb::package_mirror in [ 'github', 'googlecode' ] == false {
+    fail("Unsupported package mirror: ${::kairosdb::package_mirror}!")
   }
 
   contain '::kairosdb::install'

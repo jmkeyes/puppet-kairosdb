@@ -5,10 +5,17 @@ class kairosdb::install::redhat {
 
   $version = $::kairosdb::version
   $release = regsubst($version, '^(\d+\.\d+\.\d+)(?:-(\d+))?$', '\1')
-  $source  = 'https://github.com/kairosdb/kairosdb/releases/download/v%s/kairosdb-%s.rpm'
+
+  $github_url     = 'https://github.com/kairosdb/kairosdb/releases/download/v%s/kairosdb-%s.rpm'
+  $googlecode_url = 'https://kairosdb.googlecode.com/files/kairosdb-%s.rpm'
+
+  $source = $::kairosdb::package_mirror ? {
+    'github'     => sprintf($github_url, $release, $version),
+    'googlecode' => sprintf($googlecode_url, $version),
+  }
 
   staging::file { "kairosdb-${version}.rpm":
-    source => sprintf($source, $release, $version),
+    source => $source,
   } ->
 
   package { $::kairosdb::package_name:

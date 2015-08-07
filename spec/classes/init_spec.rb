@@ -17,5 +17,11 @@ describe 'kairosdb' do
     it { should contain_class('kairosdb::config').that_requires('Class[kairosdb::install]') }
     it { should contain_class('kairosdb::config').that_notifies('Class[kairosdb::service]') }
     it { should contain_class('kairosdb::service').that_subscribes_to('Class[kairosdb::config]') }
+
+  end
+
+  context "with package_mirror => 'unknown'" do
+    let (:params) { { :version => '0.9.4-6', :package_mirror => 'unknown' } }
+    it { should raise_error(Puppet::Error, /Unsupported package mirror: unknown!/) }
   end
 end
