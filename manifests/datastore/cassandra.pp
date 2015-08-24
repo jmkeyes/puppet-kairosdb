@@ -2,8 +2,8 @@
 
 class kairosdb::datastore::cassandra (
   $hosts,
-  $username=undef,
-  $password=undef,
+  $username                = undef,
+  $password                = undef,
   $replication_factor      = 1,
   $row_width               = 7257600000,
   $write_delay             = 1000,
@@ -60,15 +60,16 @@ class kairosdb::datastore::cassandra (
   kairosdb::setting { 'kairosdb.datastore.cassandra.write_consistency_level':
     value => $write_consistency_level,
   }
+
   if $password != undef and $username != undef {
     validate_string($password)
     validate_string($username)
 
-    kairosdb::setting{'kairosdb.datastore.cassandra.auth.username':
+    kairosdb::setting { 'kairosdb.datastore.cassandra.auth.username':
       value => $username,
     }
 
-    kairosdb::setting{'kairosdb.datastore.cassandra.auth.password':
+    kairosdb::setting { 'kairosdb.datastore.cassandra.auth.password':
       value => $username,
     }
   }
