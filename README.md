@@ -71,3 +71,9 @@ Use a remote KairosDB as a datastore (like a forwarder):
 ## Todo
 
   * Nothing to note yet.
+
+## Contributors
+
+Thanks to the following people who have contributed to this module!
+
+  * [@gcmalloc](https://github.com/gcmalloc)
