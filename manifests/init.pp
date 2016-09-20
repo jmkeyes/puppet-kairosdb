@@ -16,18 +16,19 @@
 #
 
 class kairosdb (
-  $version         = undef,
-  $package_name    = 'kairosdb',
-  $package_ensure  = 'installed',
-  $package_mirror  = 'github',
-  $service_name    = 'kairosdb',
-  $service_ensure  = 'running',
-  $service_enable  = true,
-  $manage_service  = true,
-  $manage_package  = true,
-  $settings        = {},
-  $base_path       = '/opt/kairosdb',
-  $custom_url      = undef,
+  $version           = undef,
+  $package_name      = 'kairosdb',
+  $package_ensure    = 'installed',
+  $package_mirror    = 'github',
+  $service_name      = 'kairosdb',
+  $service_ensure    = 'running',
+  $service_enable    = true,
+  $service_hasstatus = false,
+  $manage_service    = true,
+  $manage_package    = true,
+  $settings          = {},
+  $base_path         = '/opt/kairosdb',
+  $custom_url        = undef,
 ) {
   # Fail fast if we're not using a new Puppet version.
   if versioncmp($::puppetversion, '3.7.0') < 0 {

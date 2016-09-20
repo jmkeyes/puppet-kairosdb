@@ -24,7 +24,7 @@ class kairosdb::service {
     service { $::kairosdb::service_name:
       ensure    => $::kairosdb::service_ensure,
       enable    => $::kairosdb::service_enable,
-      hasstatus => false,
+      hasstatus => $::kairosdb::service_hasstatus,
     }
   }
 }
