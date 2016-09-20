@@ -37,6 +37,15 @@ A stock KairosDB 0.9.4-6 without modifications (defaults):
       version => '0.9.4-6',
     }
 
+This module by default installs the package from `github or googlecode` and has the option to
+install from `custom_repo server` for restricted environments
+
+    class { '::kairosdb':
+      version         => '0.9.4-6',
+      package_mirror  => 'custom_repo',
+      custom_url      => 'http://internalmirror.local/kairosdb/kairosdb_%s_all.deb',
+    }
+
 The same thing, but explicitly using a slow development datastore:
 
     class { '::kairosdb':

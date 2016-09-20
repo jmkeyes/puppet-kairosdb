@@ -27,6 +27,7 @@ class kairosdb (
   $manage_package  = true,
   $settings        = {},
   $base_path       = '/opt/kairosdb',
+  $custom_url      = undef,
 ) {
   # Fail fast if we're not using a new Puppet version.
   if versioncmp($::puppetversion, '3.7.0') < 0 {
@@ -39,7 +40,11 @@ class kairosdb (
     validate_re($version, '^(\d+\.\d+\.\d+)(?:-(\d+))?$')
   }
 
-  if $::kairosdb::package_mirror in [ 'github', 'googlecode' ] == false {
+  if $::kairosdb::package_mirror == 'custom_repo' and $::kairosdb::custom_url == undef {
+      fail('Custom repo selected and custom_repo url not defined')
+  }
+
+  if $::kairosdb::package_mirror in [ 'github', 'googlecode','custom_repo' ] == false {
     fail("Unsupported package mirror: ${::kairosdb::package_mirror}!")
   }
 
