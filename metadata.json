@@ -1,6 +1,6 @@
 {
   "name": "jmkeyes-kairosdb",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "jmkeyes",
   "summary": "Module for managing KairosDB.",
   "license": "Apache-2.0",
