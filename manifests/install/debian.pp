@@ -38,6 +38,6 @@ class kairosdb::install::debian {
   package { $::kairosdb::package_name:
     ensure   => $::kairosdb::package_ensure_real,
     source   => "${::staging::path}/kairosdb/kairosdb_${version}_all.deb",
-    provider => 'dpkg',
+    provider => 'apt',
   }
 }
