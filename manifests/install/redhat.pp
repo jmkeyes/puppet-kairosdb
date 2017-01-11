@@ -37,7 +37,7 @@ class kairosdb::install::redhat {
   } ->
 
   package { $::kairosdb::package_name:
-    ensure   => $::kairosdb::package_ensure,
+    ensure   => $::kairosdb::package_ensure_real,
     source   => "${::staging::path}/kairosdb/kairosdb-${version}.rpm",
     provider => 'rpm',
   }
