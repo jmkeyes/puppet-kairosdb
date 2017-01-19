@@ -5,7 +5,6 @@ group :rake, :test do
   gem 'json_pure', '<2.0.2'
   gem 'net-http-persistent', '<3.0.0'
   gem 'json', '<2.0.0'
-  gem 'syck', '>1.0.0'
   gem 'rake', '~> 10.4.0',      :require => false
   gem 'rspec', '~> 3.0',        :require => false
   gem 'rspec-core',             :require => false
