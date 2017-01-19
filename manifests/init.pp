@@ -18,7 +18,7 @@
 class kairosdb (
   $version           = undef,
   $package_name      = 'kairosdb',
-  $package_ensure    = undef,
+  $package_ensure    = $::kairosdb::version,
   $package_mirror    = 'github',
   $service_name      = 'kairosdb',
   $service_ensure    = 'running',
@@ -39,11 +39,6 @@ class kairosdb (
     fail('You must manually select a version of KairosDB to deploy.')
   } else {
     validate_re($version, '^(\d+\.\d+\.\d+)(?:-(\d+))?$')
-  }
-  if $package_ensure == undef {
-      $package_ensure_real = $version
-  } else {
-      $package_ensure_real = $package_ensure
   }
 
   if $::kairosdb::package_mirror == 'custom_repo' and $::kairosdb::custom_url == undef {
