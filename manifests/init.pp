@@ -18,7 +18,7 @@
 class kairosdb (
   $version           = undef,
   $package_name      = 'kairosdb',
-  $package_ensure    = 'installed',
+  $package_ensure    = $::kairosdb::version,
   $package_mirror    = 'github',
   $service_name      = 'kairosdb',
   $service_ensure    = 'running',
